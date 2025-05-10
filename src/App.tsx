@@ -80,6 +80,7 @@ function App() {
 	  <ScreenshotCard src="/assets/settings.png" />
 	  <ScreenshotCard src="/assets/playlists.png" />
 	  <ScreenshotCard src="/assets/download.png" />
+	  <ScreenshotCard src="/assets/multi-select.png"/>
         </div>
       </main>
 
