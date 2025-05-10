@@ -76,6 +76,8 @@ function App() {
         <div className="my-24 grid grid-cols-1 md:grid-cols-2 gap-8">
           <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/music-player.png?raw=true" />
           <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/main-screen-2.png?raw=true" />
+	  <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/settings.png?raw=true" />
+	  <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/playlists.png?raw=true" />
         </div>
       </main>
 
