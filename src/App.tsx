@@ -53,7 +53,7 @@ function App() {
             color="pink"
           />
           <FeatureCard
-            icon="⚡"
+            icon="🚀"
             title="Rust Backend"
             description="Blazingly fast performance powered by Flutter-Rust-Bridge"
             color="indigo"
