@@ -1,97 +1,126 @@
-//import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
+// App.tsx
+import { useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
+  const parallaxRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrolled = window.pageYOffset
+        parallaxRef.current.style.transform = `translateY(${scrolled * 0.5}px)`
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Parallax Background */}
-      <div className="parallax-layer bg-opacity-20" 
-           style={{ backgroundImage: "url('/src/assets/grid.svg')", transform: "translateZ(-1px) scale(2)" }} />
-      
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-purple-900 via-indigo-900 to-pink-900">
+      {/* Parallax Layers */}
+      <div ref={parallaxRef} className="parallax-layer absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[url('/src/assets/grid.svg')] bg-repeat opacity-30" />
+      </div>
+
       <main className="relative z-10 container mx-auto px-4 py-16">
-        <header className="mb-16 text-center animate-float">
-          <h1 className="text-6xl font-bold text-white mb-4 glow-text">
-            Adiman
-          </h1>
-          <p className="text-xl text-purple-100 mb-8">
-            Modern Cross-Platform Music Player
+        {/* Hero Section */}
+        <header className="mb-16 text-center animate-fade-in">
+          <div className="inline-flex items-center gap-6 mb-8 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+            <img src="/src/assets/Adiman.png" className="h-24 w-24 glow-logo" alt="Adiman Logo" />
+            <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent glow-text">
+              Adiman
+            </h1>
+          </div>
+          <p className="text-xl text-purple-100 mb-8 font-light">
+            Modern Music Experience for Linux
           </p>
         </header>
 
-        <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-xl">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="flex-1 animate-glow">
-              <img 
-                src="/src/assets/player-preview.png" 
-                className="rounded-2xl shadow-2xl transform transition hover:scale-105"
-                alt="Player Preview"
-              />
-            </div>
-            
-            <div className="flex-1 space-y-6">
-              <h2 className="text-3xl font-bold text-white">Features</h2>
-              <ul className="space-y-4 text-purple-50">
-                <li className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
-                    <MusicNoteIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <span>Smart Music Library Management</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
-                    <PaintBrushIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <span>Dynamic Theme System</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                    <CloudArrowDownIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <span>Integrated Music Downloader</span>
-                </li>
-              </ul>
-              
-              <div className="mt-8 flex gap-4">
-                <a href="#download" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-medium transition-all transform hover:scale-105">
-                  Download Now
-                </a>
-                <a href="#features" className="border border-white/30 hover:border-white/50 text-white px-6 py-3 rounded-xl font-medium transition-all">
-                  Learn More
-                </a>
-              </div>
-            </div>
-          </div>
+        {/* Feature Grid */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-24">
+          <FeatureCard
+            icon="🎵"
+            title="Dynamic UI"
+            description="Adaptive interface that reacts to your music's artwork colors"
+            color="purple"
+          />
+          <FeatureCard
+            icon="🌀"
+            title="Informative UI"
+            description="UI which provides all needed info about your songs"
+            color="pink"
+          />
+          <FeatureCard
+            icon="⚡"
+            title="Rust Powered"
+            description="Blazingly fast performance powered by Flutter-Rust-Bridge"
+            color="indigo"
+          />
+        </div>
+
+        {/* Download Section */}
+        <div className="max-w-2xl mx-auto text-center p-8 bg-black/30 backdrop-blur-lg rounded-3xl border border-white/10 animate-float">
+          <h2 className="text-3xl font-bold text-white mb-4">Get Started</h2>
+          <p className="text-purple-200 mb-6">Available for Linux (AppImage)</p>
+          <a 
+            href="https://github.com/ChaosTheChaotic/Adiman/releases/latest" 
+            className="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-medium 
+                      transform transition-all hover:scale-105 hover:shadow-glow active:scale-95"
+          >
+            Download Latest Release
+          </a>
+        </div>
+
+        {/* Screenshots Carousel */}
+        <div className="my-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ScreenshotCard src="/src/assets/player.png" />
+          <ScreenshotCard src="/src/assets/library.png" />
         </div>
       </main>
+
+      {/* Animated Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <GlowParticle key={i} index={i} />
+        ))}
+      </div>
     </div>
   )
 }
 
-// Helper icons
-function MusicNoteIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg {...props} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-    </svg>
-  )
-}
+const FeatureCard = ({ icon, title, description, color }: { icon: string, title: string, description: string, color: string }) => (
+  <div className={`p-6 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 transition-transform hover:scale-102 hover:border-${color}-400/30`}>
+    <div className={`text-4xl mb-4 animate-float`}>{icon}</div>
+    <h3 className={`text-2xl font-semibold text-${color}-300 mb-2`}>{title}</h3>
+    <p className="text-purple-200 font-light">{description}</p>
+  </div>
+)
 
-function PaintBrushIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg {...props} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88l-1.91 1.91c-.4.4-.1 1.1.5 1.1H22l-4-4h-3.5c-.6 0-.9-.7-.5-1.1l1.4-1.4z" />
-    </svg>
-  )
-}
+const ScreenshotCard = ({ src }: { src: string }) => (
+  <div className="relative group">
+    <div className="absolute inset-0 bg-purple-500/20 blur-xl rounded-3xl transform group-hover:opacity-50 transition-opacity" />
+    <img 
+      src={src} 
+      className="relative z-10 rounded-2xl shadow-2xl transform transition-transform group-hover:scale-[1.02] cursor-pointer" 
+      alt="App Screenshot" 
+    />
+  </div>
+)
 
-function CloudArrowDownIcon(props: React.SVGProps<SVGSVGElement>) {
+const GlowParticle = ({ index }: { index: number }) => {
+  const style = {
+    top: `${Math.random() * 100}%`,
+    left: `${Math.random() * 100}%`,
+    animationDelay: `${index * 0.2}s`,
+  }
+
   return (
-    <svg {...props} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M13 13v5.585l1.293-1.292.707.707-2.707 2.707-2.707-2.707.707-.707L11 18.585V13h2z" />
-      <path d="M18.944 10.113C18.485 6.434 15.419 3.5 11.5 3.5c-4.142 0-7.5 3.358-7.5 7.5 0 2.254 1.067 4.35 2.779 5.717A3.505 3.505 0 0 0 6.5 21h12c2.481 0 4.5-2.019 4.5-4.5 0-2.344-1.844-4.244-4.056-4.387zM18.5 19h-12C5.019 19 3 16.981 3 14.5c0-3.584 3.916-6.5 7.5-6.5 3.015 0 5.681 2.118 6.42 5.018.143.434.519.75.973.75.564 0 1.027-.45 1.047-1.012.049-1.367-.485-2.696-1.42-3.756H19c2.757 0 5 2.243 5 5s-2.243 5-5 5z" />
-    </svg>
+    <div 
+      className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-20 animate-glow-particle"
+      style={style}
+    />
   )
 }
 

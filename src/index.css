@@ -4,20 +4,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --gradient-start: #4f46e5;
-  --gradient-end: #c026d3;
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-body {
-  @apply bg-gradient-to-br from-[var(--gradient-start)] to-[var(--gradient-end)] min-h-screen;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-particle {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.8); }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow-particle {
+  animation: glow-particle 4s ease-in-out infinite;
 }
 
 .glow-text {
-  text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+  text-shadow: 0 0 20px rgba(192, 132, 252, 0.4);
 }
 
-.parallax-layer {
-  @apply absolute inset-0 bg-no-repeat bg-center;
-  transform-style: preserve-3d;
+.glow-logo {
+  filter: drop-shadow(0 0 15px rgba(165, 180, 252, 0.4));
+}
+
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 25px rgba(192, 132, 252, 0.3);
 }
