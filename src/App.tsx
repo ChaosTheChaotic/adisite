@@ -27,7 +27,8 @@ function App() {
         {/* Hero Section */}
         <header className="mb-16 text-center animate-fade-in">
           <div className="inline-flex items-center gap-6 mb-8 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
-            <img src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/Adiman.png?raw=true" className="h-24 w-24 glow-logo" alt="Adiman Logo" />
+{/*           <img src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/Adiman.png?raw=true" className="h-24 w-24 glow-logo" alt="Adiman Logo" /> */}
+	<img src="/assets/Adiman.png" className="h-24 w-24 glow-logo" alt="Adiman Logo" />
             <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent glow-text">
               Adiman
             </h1>
@@ -74,10 +75,11 @@ function App() {
 
         {/* Screenshots Carousel */}
         <div className="my-24 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/music-player.png?raw=true" />
-          <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/main-screen-2.png?raw=true" />
-	  <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/settings.png?raw=true" />
-	  <ScreenshotCard src="https://github.com/ChaosTheChaotic/Adiman/blob/master/images/playlists.png?raw=true" />
+  	  <ScreenshotCard src="/assets/music-player.png" />
+  	  <ScreenshotCard src="/assets/main-screen-2.png" />
+	  <ScreenshotCard src="/assets/settings.png" />
+	  <ScreenshotCard src="/assets/playlists.png" />
+	  <ScreenshotCard src="/assets/download.png" />
         </div>
       </main>
 
