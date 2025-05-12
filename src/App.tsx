@@ -93,13 +93,34 @@ function App() {
   )
 }
 
-const FeatureCard = ({ icon, title, description, color }: { icon: string, title: string, description: string, color: string }) => (
-  <div className={`p-6 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 transition-transform hover:scale-102 hover:border-${color}-400/30`}>
-    <div className={`text-4xl mb-4 animate-float`}>{icon}</div>
-    <h3 className={`text-2xl font-semibold text-${color}-300 mb-2`}>{title}</h3>
-    <p className="text-purple-200 font-light">{description}</p>
-  </div>
-)
+const FeatureCard = ({ icon, title, description, color }: { icon: string; title: string; description: string; color: "purple" | "pink" | "indigo" }) => {
+  const colorConfig = {
+    purple: {
+      text: "text-purple-300",
+      border: "hover:border-purple-400/30",
+    },
+    pink: {
+      text: "text-pink-300",
+      border: "hover:border-pink-400/30",
+    },
+    indigo: {
+      text: "text-indigo-300",
+      border: "hover:border-indigo-400/30",
+    },
+  };
+
+  return (
+    <div
+      className={`p-6 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 transition-transform hover:scale-102 ${colorConfig[color].border}`}
+    >
+      <div className={`text-4xl mb-4 animate-float`}>{icon}</div>
+      <h3 className={`text-2xl font-semibold ${colorConfig[color].text} mb-2`}>
+        {title}
+      </h3>
+      <p className="text-purple-200 font-light">{description}</p>
+    </div>
+  );
+};
 
 const ScreenshotCard = ({ src }: { src: string }) => (
   <div className="relative group">
