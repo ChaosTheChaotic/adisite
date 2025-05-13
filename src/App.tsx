@@ -25,17 +25,21 @@ function App() {
 
       <main className="relative z-10 container mx-auto px-4 py-16">
         {/* Hero Section */}
-        <header className="mb-16 text-center animate-fade-in">
-          <div className="inline-flex items-center gap-6 mb-8 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
-	<img src="/assets/Adiman.png" className="h-24 w-24 glow-logo" alt="Adiman Logo" />
-            <h1 className="text-6xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent glow-text">
-              Adiman
-            </h1>
-          </div>
-          <p className="text-xl text-purple-100 mb-8 font-light">
-            Modern Music Experience for Linux
-          </p>
-        </header>
+	<header className="mb-16 text-center animate-fade-in">
+  	  <div className="inline-flex items-center gap-4 md:gap-6 mb-8 p-4 md:p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+    	  <img 
+      	    src="/assets/Adiman.png" 
+      	    className="h-16 w-16 md:h-24 md:w-24 glow-logo" 
+      	    alt="Adiman Logo" 
+    	  />
+    	  <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent glow-text">
+      	    Adiman
+    	  </h1>
+  	</div>
+  	  <p className="text-lg md:text-xl text-purple-100 mb-8 font-light">
+	    Modern Music Experience for Linux
+	  </p>
+	</header>
 
         {/* Feature Grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-24">
