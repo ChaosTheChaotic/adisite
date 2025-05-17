@@ -113,15 +113,14 @@ function App() {
           </a>
         </div>
 
-        {/* Screenshots Carousel */}
         <div className="my-24 grid grid-cols-1 md:grid-cols-2 gap-8">
           <ScreenshotCard 
-            src="/assets/music-player.png" 
-            onClick={() => setSelectedImage("/assets/music-player.png")} 
+            src="/assets/player.png" 
+            onClick={() => setSelectedImage("/assets/player.png")} 
           />
           <ScreenshotCard 
-            src="/assets/main-screen-2.png" 
-            onClick={() => setSelectedImage("/assets/main-screen-2.png")} 
+            src="/assets/main-screen.png" 
+            onClick={() => setSelectedImage("/assets/main-screen.png")} 
           />
           <ScreenshotCard 
             src="/assets/settings.png" 
